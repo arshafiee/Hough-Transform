@@ -135,8 +135,8 @@ ax3 = subplot(3,1,3);
 imshow(img_edges)
 
 %%
-H = hough_circles_acc(img_edges, 25);
-peaks = hough_peaks(H, 10, 'NHoodSize', [21 21], 'Threshold', 0.5*max(H(:)));
+H = hough_circles_acc(img_edges, 20);
+peaks = hough_peaks(H, 10, 'NHoodSize', [21 21], 'Threshold', 0.75*max(H(:)));
 figure();
 imagesc(H)
 hold on
@@ -145,37 +145,7 @@ plot(peaks(:,2),peaks(:,1),'rs')
 %%
 figure();
 imshow(img)
-circle(peaks(:, 2), peaks(:, 1), 25);
-
-%%
-clear;clc;
-%% 1-a
-img = imread(fullfile('input', 'ps1-input2.png'));  % already grayscale
-%img = imread('3.jpg');  % already grayscale
-img = img(:, :, 1);
-
-figure();
-ax1 = subplot(3,1,1);
-imshow(img)
-
-hsize = 11;
-sigma = 20;
-filter = fspecial('gaussian', hsize, sigma);
-outim = imfilter(img, filter);
-ax2 = subplot(3,1,2);
-imshow(outim)
-
-img_edges = edge(outim, 'canny', []);
-ax3 = subplot(3,1,3);
-imshow(img_edges)
-
-%%
-peaks = find_circles(img_edges, [15 35]);
-
-%%
-figure();
-imshow(img)
-draw_circle(peaks(:,2), peaks(:,1), peaks(:,4));
+circle(peaks(:, 2), peaks(:, 1), 20);
 
 %%
 clear;clc;
